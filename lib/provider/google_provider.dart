@@ -12,9 +12,32 @@ class GoogleProvider extends ChangeNotifier{
   String? title;
   BookMarkModal? bookMarkModal;
   WebUri uri= WebUri('https://www.google.com');
+  bool isButtonEnabled = true;
+  bool isButtonForward = false;
 
   void onProgress(int progress){
     this.progress = progress/100;
+    notifyListeners();
+  }
+
+  Future<void> goBack() async {
+    await inAppWebViewController.goBack();
+    notifyListeners();
+  }
+
+  Future<void> canGoBack() async {
+    isButtonEnabled = await inAppWebViewController.canGoBack();
+    notifyListeners();
+  }
+
+  Future<void> goForward() async {
+    await inAppWebViewController.goForward();
+    notifyListeners();
+  }
+
+  Future<void> canGoForward()
+  async {
+    isButtonForward = await inAppWebViewController.canGoForward();
     notifyListeners();
   }
 

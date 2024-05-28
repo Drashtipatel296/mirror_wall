@@ -105,7 +105,7 @@ class HomeScreen extends StatelessWidget {
         },
         stream: Connectivity().onConnectivityChanged,
       ),
-      bottomNavigationBar: bottomNavigation(),
+      bottomNavigationBar: bottomNavigation(context),
     );
   }
 }
